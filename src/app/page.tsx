@@ -1,7 +1,61 @@
-import Image from "next/image";
+// app/page.tsx
+// This is the main page component for your portfolio.
 
-export default function Home() {
+import type { NextPage } from 'next';
+import Head from 'next/head';
+
+// --- Import Data and Components ---
+import { personalInfo, projects } from '../lib/data';
+import { GithubIcon, LinkedinIcon, MailIcon } from '../components/icons';
+
+// --- Main Page Component ---
+const HomePage: NextPage = () => {
   return (
-    <p>hi</p>
+    <>
+      <Head>
+        <title>{personalInfo.name} | Software Developer</title>
+        <meta name="description" content="Personal portfolio of William Leung, a software developer and computer science student at Cornell." />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <main className="font-sans bg-gray-50 text-gray-800 min-h-screen">
+        <div className="container mx-auto max-w-4xl px-6 py-16 md:py-24">
+          
+          {/* --- Hero Section --- */}
+          <section className="flex flex-col md:flex-row items-start md:items-center justify-between gap-10 mb-20">
+            <div className="md:w-2/3">
+              <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+                <span className="text-fuchsia-600">Hi, I'm {personalInfo.name.split(' ')[0]}</span>
+              </h1>
+              <p className="text-gray-600 text-lg leading-relaxed">
+                I'm a Computer Science student at Cornell, passionate about building intelligent systems and scalable software. My work spans across AI/ML, cloud infrastructure, and full-stack development. I enjoy tackling complex problems and turning ideas into reality through code.
+              </p>
+              <div className="mt-6 flex items-center gap-4">
+                <a href={personalInfo.github} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-900 transition-colors">
+                  <GithubIcon className="w-6 h-6" />
+                </a>
+                <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-900 transition-colors">
+                  <LinkedinIcon className="w-6 h-6" />
+                </a>
+                 <a href={`mailto:${personalInfo.email}`} className="text-gray-500 hover:text-gray-900 transition-colors">
+                  <MailIcon className="w-6 h-6" />
+                </a>
+              </div>
+            </div>
+            <div className="w-40 h-40 md:w-48 md:h-48 flex-shrink-0">
+              <img
+                src={personalInfo.profileImage}
+                alt={`A portrait of ${personalInfo.name}`}
+                className="rounded-full object-cover w-full h-full shadow-lg"
+                width={200}
+                height={200}
+              />
+            </div>
+          </section>
+        </div>
+      </main>
+    </>
   );
-}
+};
+
+export default HomePage;

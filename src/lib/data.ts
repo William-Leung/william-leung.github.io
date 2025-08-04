@@ -4,6 +4,7 @@ export const personalInfo = {
   // Replace with your actual LinkedIn and GitHub URLs
   linkedin: "https://www.linkedin.com/in/william-leung-50980021b/", 
   github: "https://github.com/William-Leung",
+  profileImage: "https://placehold.co/400x400/E2E8F0/4A5568?text=WL&font=sans"
 };
 
 export const projects = [
