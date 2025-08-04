@@ -8,6 +8,7 @@ export default function ProfileImage() {
         <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#654ea3]/20 to-[#eaafc8]/20 animate-pulse"></div>
         <div className="absolute inset-2 rounded-3xl bg-gradient-to-r from-[#654ea3]/20 to-[#eaafc8]/20 animate-pulse delay-150"></div>
         <Image
+          priority
           src={personalInfo.profileImage}
           alt={`A portrait of ${personalInfo.name}`}
           width={224}
