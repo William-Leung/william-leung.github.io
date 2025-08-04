@@ -1,8 +1,10 @@
 // app/page.tsx
 // This is the main page component for your portfolio.
 
+import Image from 'next/image'
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import ProjectCard from '../components/ProjectCard'
 
 // --- Import Data and Components ---
 import { personalInfo, projects } from '../lib/data';
@@ -43,13 +45,22 @@ const HomePage: NextPage = () => {
               </div>
             </div>
             <div className="w-40 h-40 md:w-48 md:h-48 flex-shrink-0">
-              <img
+              <Image
                 src={personalInfo.profileImage}
                 alt={`A portrait of ${personalInfo.name}`}
                 className="rounded-full object-cover w-full h-full shadow-lg"
                 width={200}
                 height={200}
               />
+            </div>
+          </section>
+
+          <section>
+            <h2 className="text-3xl font-bold tracking-tight mb-8">Projects</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {projects.map((project) => (
+                <ProjectCard key={project.title} {...project} />
+              ))}
             </div>
           </section>
         </div>
