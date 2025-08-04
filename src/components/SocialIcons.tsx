@@ -1,0 +1,31 @@
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { personalInfo } from '../lib/data';
+
+const links = [
+  { href: personalInfo.github, icon: FaGithub, label: 'GitHub', hoverBg: 'group-hover:bg-black', hoverColor: 'group-hover:text-white' },
+  { href: personalInfo.linkedin, icon: FaLinkedin, label: 'LinkedIn', hoverBg: 'group-hover:bg-[#0A66C2]', hoverColor: 'group-hover:text-white' },
+  { href: `mailto:${personalInfo.email}`, icon: FaEnvelope, label: 'Email', hoverBg: 'group-hover:bg-[#D93025]', hoverColor: 'group-hover:text-white' },
+];
+
+export default function SocialIcons() {
+  return (
+    <div className="flex items-center gap-8">
+      {links.map(({ href, icon: Icon, label, hoverBg, hoverColor }) => (
+        <a
+          key={label}
+          href={href}
+          target={label !== 'Email' ? '_blank' : undefined}
+          rel={label !== 'Email' ? 'noopener noreferrer' : undefined}
+          className="group flex items-center gap-3 text-gray-600 hover:scale-105 transition-all duration-300"
+        >
+          <div className={`p-3 rounded-full bg-white shadow-md transition-colors duration-300 ${hoverBg}`}>
+            <Icon className={`w-6 h-6 text-gray-600 transition-colors duration-300 ${hoverColor}`} />
+          </div>
+          <span className="font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            {label}
+          </span>
+        </a>
+      ))}
+    </div>
+  );
+}

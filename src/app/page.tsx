@@ -1,135 +1,27 @@
-// app/page.tsx
-
-import Image from 'next/image';
-import type { NextPage } from 'next';
 import Head from 'next/head';
-import ProjectCard from '../components/ProjectCard';
-import { personalInfo, projects } from '../lib/data';
-import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import type { NextPage } from 'next';
+import { personalInfo } from '../lib/data';
+import HeroSection from '../components/HeroSection';
+import ProjectsSection from '../components/ProjectsSection';
 
-const HomePage: NextPage = () => {
-  return (
-    <>
-      <Head>
-        <title>{personalInfo.name} | Software Developer</title>
-        <meta
-          name="description"
-          content="Personal portfolio of William Leung, a software developer and computer science student at Cornell."
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+const HomePage: NextPage = () => (
+  <>
+    <Head>
+      <title>{personalInfo.name} | Software Developer</title>
+      <meta
+        name="description"
+        content="Personal portfolio of William Leung, a software developer and computer science student at Cornell."
+      />
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
 
-      <main className="font-sans bg-gradient-to-br from-slate-50 via-white to-blue-50/30 text-gray-800 min-h-screen">
-        <div className="container mx-auto max-w-5xl px-6 py-16 md:py-24">
-
-          {/* --- Hero Section --- */}
-          <section className="flex flex-col md:flex-row items-start md:items-center justify-between gap-12 mb-32">
-            <div className="md:w-2/3">
-              <div className="mb-6">
-                <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-none">
-                  <span className="bg-gradient-to-r from-[#654ea3] to-[#eaafc8] bg-clip-text text-transparent">
-                    Hi, I&apos;m {personalInfo.name.split(' ')[0]}
-                  </span>
-                </h1>
-                <div className="w-24 h-1 bg-gradient-to-r from-[#654ea3] to-[#eaafc8] rounded-full"></div>
-              </div>
-
-              <p className="text-gray-700 text-xl leading-relaxed font-light mb-8 max-w-2xl">
-                I&apos;m a <span className="font-semibold text-gray-900">Computer Science student at Cornell</span>, passionate about  
-                building intelligent systems and scalable software. My work spans across  
-                <span className="font-semibold text-[#654ea3]"> AI/ML</span>,  
-                <span className="font-semibold text-[#654ea3]"> cloud infrastructure</span>, and  
-                <span className="font-semibold text-[#654ea3]"> full-stack development</span>.
-              </p>
-
-              <div className="flex items-center gap-8">
-                <a
-                  href={personalInfo.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-3 text-gray-600 hover:text-black transition-all duration-300 hover:scale-105"
-                >
-                  <div className="p-3 rounded-full bg-white shadow-md transition-colors duration-300 group-hover:bg-black">
-                    <FaGithub className="w-6 h-6 text-gray-600 transition-colors duration-300 group-hover:text-white" />
-                  </div>
-                  <span className="font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    GitHub
-                  </span>
-                </a>
-
-                <a
-                  href={personalInfo.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-3 text-gray-600 hover:text-[#0A66C2] transition-all duration-300 hover:scale-105"
-                >
-                  <div className="p-3 rounded-full bg-white shadow-md transition-colors duration-300 group-hover:bg-[#0A66C2]">
-                    <FaLinkedin className="w-6 h-6 text-gray-600 transition-colors duration-300 group-hover:text-white" />
-                  </div>
-                  <span className="font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    LinkedIn
-                  </span>
-                </a>
-
-                <a
-                  href={`mailto:${personalInfo.email}`}
-                  className="group flex items-center gap-3 text-gray-600 hover:text-[#D93025] transition-all duration-300 hover:scale-105"
-                >
-                  <div className="p-3 rounded-full bg-white shadow-md transition-colors duration-300 group-hover:bg-[#D93025]">
-                    <FaEnvelope className="w-6 h-6 text-gray-600 transition-colors duration-300 group-hover:text-white" />
-                  </div>
-                  <span className="font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    Email
-                  </span>
-                </a>
-              </div>
-            </div>
-
-            <div className="relative group">
-              <div className="w-48 h-48 md:w-56 md:h-56 relative">
-                {/* Animated background rings */}
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#654ea3]/20 to-[#eaafc8]/20 animate-pulse"></div>
-                <div className="absolute inset-2 rounded-3xl bg-gradient-to-r from-[#654ea3]/20 to-[#eaafc8]/20 animate-pulse delay-150"></div>
-
-                <Image
-                  src={personalInfo.profileImage}
-                  alt={`A portrait of ${personalInfo.name}`}
-                  className="relative z-10 rounded-3xl object-cover w-full h-full shadow-2xl ring-4 ring-white/50 group-hover:scale-105 transition-transform duration-500"
-                  width={224}
-                  height={224}
-                />
-              </div>
-            </div>
-          </section>
-
-          {/* --- Projects Section --- */}
-          <section>
-            <div className="mb-16 text-center">
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-gray-900">
-                Featured Projects
-              </h2>
-              <div className="w-32 h-1 bg-gradient-to-r from-[#654ea3] to-[#eaafc8] rounded-full mx-auto mb-6"></div>
-              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                A selection of projects showcasing my expertise in AI/ML, full-stack development, and cloud infrastructure
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {projects.map((project, index) => (
-                <div
-                  key={project.title}
-                  className="transform hover:scale-[1.02] transition-all duration-300"
-                  style={{ animationDelay: `${index * 150}ms` }}
-                >
-                  <ProjectCard {...project} />
-                </div>
-              ))}
-            </div>
-          </section>
-        </div>
-      </main>
-    </>
-  );
-};
+    <main className="font-sans bg-gradient-to-br from-slate-50 via-white to-blue-50/30 text-gray-800 min-h-screen">
+      <div className="container mx-auto max-w-5xl px-6 py-16 md:py-24">
+        <HeroSection />
+        <ProjectsSection />
+      </div>
+    </main>
+  </>
+);
 
 export default HomePage;
