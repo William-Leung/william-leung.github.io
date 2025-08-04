@@ -29,14 +29,14 @@ const HomePage: NextPage = () => {
               <div className="mb-6">
                 <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-none">
                   <span className="bg-gradient-to-r from-fuchsia-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
-                    Hi, I'm {personalInfo.name.split(' ')[0]}
+                    Hi, I&aposm {personalInfo.name.split(' ')[0]}
                   </span>
                 </h1>
                 <div className="w-24 h-1 bg-gradient-to-r from-fuchsia-500 to-purple-500 rounded-full"></div>
               </div>
               
               <p className="text-gray-700 text-xl leading-relaxed font-light mb-8 max-w-2xl">
-                I'm a <span className="font-semibold text-gray-900">Computer Science student at Cornell</span>, passionate about 
+                I&aposm a <span className="font-semibold text-gray-900">Computer Science student at Cornell</span>, passionate about 
                 building intelligent systems and scalable software. My work spans across 
                 <span className="font-semibold text-fuchsia-600"> AI/ML</span>, 
                 <span className="font-semibold text-blue-600"> cloud infrastructure</span>, and 
@@ -127,25 +127,6 @@ const HomePage: NextPage = () => {
                   <ProjectCard {...project} />
                 </div>
               ))}
-            </div>
-          </section>
-
-          {/* --- Call to Action Section --- */}
-          <section className="mt-32 text-center">
-            <div className="bg-gradient-to-r from-fuchsia-600/10 via-purple-600/10 to-blue-600/10 rounded-3xl p-12 border border-fuchsia-200/50">
-              <h3 className="text-3xl font-bold text-gray-900 mb-4">
-                Let's Build Something Amazing Together
-              </h3>
-              <p className="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
-                I'm always excited to discuss new opportunities, innovative projects, or just connect with fellow developers.
-              </p>
-              <a 
-                href={`mailto:${personalInfo.email}`}
-                className="inline-flex items-center gap-3 bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-fuchsia-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
-              >
-                <FaEnvelope className="w-5 h-5" />
-                Get In Touch
-              </a>
             </div>
           </section>
         </div>
