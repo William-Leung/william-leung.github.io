@@ -8,7 +8,7 @@ import ProjectCard from '../components/ProjectCard'
 
 // --- Import Data and Components ---
 import { personalInfo, projects } from '../lib/data';
-import { GithubIcon, LinkedinIcon, MailIcon } from '../components/icons';
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 
 // --- Main Page Component ---
 const HomePage: NextPage = () => {
@@ -24,7 +24,7 @@ const HomePage: NextPage = () => {
         <div className="container mx-auto max-w-4xl px-6 py-16 md:py-24">
           
           {/* --- Hero Section --- */}
-          <section className="flex flex-col md:flex-row items-start md:items-center justify-between gap-10 mb-20">
+          <section className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 mb-24">
             <div className="md:w-2/3">
               <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
                 <span className="text-fuchsia-600">Hi, I&apos;m {personalInfo.name.split(' ')[0]}</span>
@@ -32,15 +32,15 @@ const HomePage: NextPage = () => {
               <p className="text-gray-600 text-lg leading-relaxed">
                 I&apos;m a Computer Science student at Cornell, passionate about building intelligent systems and scalable software. My work spans across AI/ML, cloud infrastructure, and full-stack development. I enjoy tackling complex problems and turning ideas into reality through code.
               </p>
-              <div className="mt-6 flex items-center gap-4">
+              <div className="mt-8 flex items-center gap-6">
                 <a href={personalInfo.github} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-900 transition-colors">
-                  <GithubIcon className="w-6 h-6" />
+                  <FaGithub className="w-8 h-8" />
                 </a>
                 <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-900 transition-colors">
-                  <LinkedinIcon className="w-6 h-6" />
+                  <FaLinkedin className="w-8 h-8" />
                 </a>
                  <a href={`mailto:${personalInfo.email}`} className="text-gray-500 hover:text-gray-900 transition-colors">
-                  <MailIcon className="w-6 h-6" />
+                  <FaEnvelope className="w-8 h-8" />
                 </a>
               </div>
             </div>
