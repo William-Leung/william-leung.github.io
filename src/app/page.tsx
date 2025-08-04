@@ -28,14 +28,14 @@ const HomePage: NextPage = () => {
               <div className="mb-6">
                 <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-none">
                   <span className="bg-gradient-to-r from-[#654ea3] to-[#eaafc8] bg-clip-text text-transparent">
-                    Hi, I'm {personalInfo.name.split(' ')[0]}
+                    Hi, I&apos;m {personalInfo.name.split(' ')[0]}
                   </span>
                 </h1>
                 <div className="w-24 h-1 bg-gradient-to-r from-[#654ea3] to-[#eaafc8] rounded-full"></div>
               </div>
 
               <p className="text-gray-700 text-xl leading-relaxed font-light mb-8 max-w-2xl">
-                I'm a <span className="font-semibold text-gray-900">Computer Science student at Cornell</span>, passionate about  
+                I&apos;m a <span className="font-semibold text-gray-900">Computer Science student at Cornell</span>, passionate about  
                 building intelligent systems and scalable software. My work spans across  
                 <span className="font-semibold text-[#654ea3]"> AI/ML</span>,  
                 <span className="font-semibold text-[#654ea3]"> cloud infrastructure</span>, and  
