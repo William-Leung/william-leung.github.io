@@ -2,8 +2,8 @@
 import Head from 'next/head';
 import type { NextPage } from 'next';
 import { personalInfo } from '../lib/data';
-import HeroSection from '../components/HeroSection';
-import ProjectsSection from '../components/ProjectsSection';
+import Hero from '../components/sections/Hero';
+import Experience from '@/components/sections/Experience';
 
 const HomePage: NextPage = () => (
   <>
@@ -18,10 +18,10 @@ const HomePage: NextPage = () => (
 
     <main className="font-sans bg-gradient-to-br from-stone-50 via-stone-100 to-white text-gray-900 min-h-screen">
       <div className="container mx-auto max-w-5xl px-6 py-16 md:py-24">
-        <HeroSection />
-        {/* <ProjectsSection /> */}
+        <Hero />
+        {/* <Experience /> */}
       </div>
-    </main>
+    </main> 
   </>
 );
 

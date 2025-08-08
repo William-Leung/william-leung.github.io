@@ -9,21 +9,18 @@ const links = [
 
 export default function SocialIcons() {
   return (
-    <div className="flex items-center gap-8">
+    <div className="flex items-center gap-6">
       {links.map(({ href, icon: Icon, label, hoverBg, hoverColor }) => (
         <a
           key={label}
           href={href}
           target={label !== 'Email' ? '_blank' : undefined}
           rel={label !== 'Email' ? 'noopener noreferrer' : undefined}
-          className="group flex items-center gap-3 text-gray-600 hover:scale-105 transition-all duration-300"
+          className="group text-gray-600 hover:scale-110 transition-all duration-300"
         >
           <div className={`p-3 rounded-full bg-white shadow-md transition-colors duration-300 ${hoverBg}`}>
             <Icon className={`w-6 h-6 text-gray-600 transition-colors duration-300 ${hoverColor}`} />
           </div>
-          <span className="font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            {label}
-          </span>
         </a>
       ))}
     </div>
