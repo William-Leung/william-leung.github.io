@@ -19,7 +19,7 @@ const HomePage: NextPage = () => (
     <main className="font-sans bg-gradient-to-br from-stone-50 via-stone-100 to-white text-gray-900 min-h-screen">
       <div className="container mx-auto max-w-5xl px-6 py-16 md:py-24">
         <Hero />
-        {/* <Experience /> */}
+        <Experience />
       </div>
     </main> 
   </>
