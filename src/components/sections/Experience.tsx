@@ -182,7 +182,7 @@ export default function ExperienceSection() {
       <div className="mb-4">
         <h2 className="text-[2.25rem] md:text-[2.5rem] font-extrabold tracking-tight leading-tight">
           <span className="bg-gradient-to-r from-[#654ea3] to-[#eaafc8] bg-clip-text text-transparent">
-            Experience
+            Work Experience
           </span>
         </h2>
         <div className="w-20 h-1.5 bg-gradient-to-r from-[#654ea3] to-[#eaafc8] rounded-full mt-1" />

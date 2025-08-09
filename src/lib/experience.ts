@@ -13,17 +13,18 @@ export type ExperienceItem = {
 
 export const experience: ExperienceItem[] = [
   {
-    date: "May 2025 - Present",
-    title: "Development Manager",
-    company: "SeaBridge Sustainability",
-    location: "San Jose, CA",
-    quickImpact:
-      "Architected an enterprise ESG RAG platform on AWS that automated ~85% of manual workflows and cut report turnaround from weeks to days.",
-    achievements: [
-      "Shipped LangGraph agents for ingestion, QA, and framework mapping (GRESB/ISSB) to automate ~85% of ESG workflows.",
-      "Reduced report generation cycle from weeks to days (~90% reduction) while improving consistency of investor-ready outputs."
-    ],
-    technologies: ["Python", "LangGraph", "MongoDB", "FastAPI", "AWS"],
+  date: "May 2025 - Present",
+  title: "Development Manager",
+  company: "SeaBridge Sustainability",
+  location: "San Jose, CA",
+  quickImpact:
+    "Built AWS ESG RAG platform automating ~85% of workflows, cutting report turnaround from weeks to days.",
+  achievements: [
+    "Developed Bedrock/FastAPI/MongoDB pipeline with LangGraph agents for ingestion, QA, and framework mapping (GRESB/ISSB).",
+    "Automated ~85% of ESG workflows via vector search, prompt engineering, and multi-agent orchestration.",
+    "Reduced report generation cycle by ~90%, improving accuracy and investor readiness."
+  ],
+  technologies: ["Python", "LangGraph", "MongoDB", "FastAPI", "AWS"]
     // links: [
     //   { label: "Case Study", url: "https://example.com/case-study" },
     //   { label: "GitHub Repo", url: "https://github.com/William-Leung/project" }

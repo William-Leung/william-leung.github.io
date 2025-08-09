@@ -16,8 +16,13 @@ export default function SocialIcons() {
           href={href}
           target={label !== 'Email' ? '_blank' : undefined}
           rel={label !== 'Email' ? 'noopener noreferrer' : undefined}
-          className="group text-gray-600 hover:scale-110 transition-all duration-300"
+          className="group relative flex items-center justify-center text-gray-600 hover:scale-110 transition-all duration-300"
         >
+          {/* Tooltip */}
+          <span className="absolute bottom-full mb-2 px-2 py-1 text-xs text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+            {label}
+          </span>
+
           <div className={`p-3 rounded-full bg-white shadow-md transition-colors duration-300 ${hoverBg}`}>
             <Icon className={`w-6 h-6 text-gray-600 transition-colors duration-300 ${hoverColor}`} />
           </div>
