@@ -16,15 +16,15 @@ export const experience: ExperienceItem[] = [
   date: "May 2025 - Present",
   title: "Development Manager",
   company: "SeaBridge Sustainability",
-  location: "San Jose, CA",
+  location: "Remote (San Jose, CA)",
   quickImpact:
-    "Built AWS ESG RAG platform automating ~85% of workflows, cutting report turnaround from weeks to days.",
+    "Engineered an AWS-based RAG pipeline that ingests 940+ GB/month and automates 85% of GRESB report creation workflows.",
   achievements: [
-    "Developed Bedrock/FastAPI/MongoDB pipeline with LangGraph agents for ingestion, QA, and framework mapping (GRESB/ISSB).",
-    "Automated ~85% of ESG workflows via vector search, prompt engineering, and multi-agent orchestration.",
-    "Reduced report generation cycle by ~90%, improving accuracy and investor readiness."
+    "Built an end-to-end RAG architecture on AWS (Bedrock, Lambda, S3, API Gateway, ECS) with FastAPI, LangGraph, MongoDB, and Pinecone to parse ESG documents and map their contents to GRESB Assessment Indicators.",
+    "Designed a LangGraph multi-agent RAG system for document ingestion, guideline mapping, compliance checks, and citations.",
+    "Reduced report preparation from ~3 months to 1 week while maintaining accuracy, audit readiness, and consistency across investor-facing outputs."
   ],
-  technologies: ["Python", "LangGraph", "MongoDB", "FastAPI", "AWS"]
+  technologies: ["LangGraph", "AWS Bedrock", "AWS Lambda", "API Gateway", "Pinecone", "FastAPI"]
     // links: [
     //   { label: "Case Study", url: "https://example.com/case-study" },
     //   { label: "GitHub Repo", url: "https://github.com/William-Leung/project" }
@@ -36,25 +36,25 @@ export const experience: ExperienceItem[] = [
     company: "NetApp",
     location: "San Jose, CA",
     quickImpact:
-      "Implemented an AWS S3-compatible GetObjectAttributes API in C++ for ONTAP, supporting 25K+ concurrent requests.",
+      "Implemented an AWS S3-compatible GetObjectAttributes API in C++ for ONTAP, handling 25K+ concurrent requests.",
     achievements: [
-      "Delivered production code with ~97% unit test coverage across 70+ tests; released with zero defects.",
-      "Enabled seamless cloud integration paths for 10K+ enterprise clients across ONTAP deployments."
+      "Optimised API performance for distributed storage environments by reducing request latency under high concurrency and improving fault tolerance at scale.",
+      "Achieved 97% unit test coverage across 70+ tests and enabled cloud integration for 10K+ enterprise clients with a zero-defect release."
     ],
-    technologies: ["C++", "AWS S3", "API Development", "Distributed Systems"]
+    technologies: ["C++", "AWS S3", "Distributed Systems", "Systems Programming", "API Development"]
   },
   {
     date: "Aug 2023 - Present",
-    title: "Head Teaching Assistant, Analysis of Algorithms",
+    title: "Teaching Assistant, Analysis of Algorithms",
     company: "Cornell University",
     location: "Ithaca, NY",
     quickImpact:
-      "Coordinated grading quality and logistics for a 400+ student course across a 14 person TA team.",
+      "Coordinated grading quality and logistics for a 400+ student course across a 14-person TA team.",
     achievements: [
-      "Standardized rubrics and grader communications to ensure fairness and consistency at scale.",
-      "Supported instruction, logistics, and tooling to improve turnaround and student experience."
+      "Standardised grading rubrics and implemented feedback workflows to improve fairness and turnaround time across all assignments.",
+      "Designed and developed grading scripts in Python, completely automating grading for coding assigments."
     ],
-    technologies: ["Algorithms", "Python/Java (course tooling)", "Education Ops"]
+    technologies: ["Algorithms", "Python", "Team Leadership"]
   },
   {
     date: "Jul 2023 - Oct 2023",
@@ -62,11 +62,11 @@ export const experience: ExperienceItem[] = [
     company: "Global Business Consulting Services",
     location: "San Jose, CA",
     quickImpact:
-      "Led delivery of a real-time fleet app tracking 2K+ vehicles with 99.9% uptime.",
+      "Led delivery of a real-time fleet management app tracking 2K+ vehicles with 99.9% uptime.",
     achievements: [
-      "Implemented CI/CD to accelerate delivery by ~20% and maintain 95%+ test coverage per sprint.",
-      "Led 7 engineers through Agile sprints to ship 9 major releases on schedule."
+      "Implemented CI/CD pipelines to accelerate release cycles by ~20% while maintaining 95%+ automated test coverage per sprint.",
+      "Directed a 7-engineer team through Agile sprints, delivering 9 major releases on schedule with full stakeholder sign-off."
     ],
-    technologies: ["TypeScript", "React", "Next.js", "CI/CD"]
+    technologies: ["TypeScript", "React", "Next.js", "CI/CD", "Agile"]
   }
 ];

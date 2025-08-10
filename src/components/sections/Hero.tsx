@@ -26,8 +26,8 @@ export default function HeroSection() {
           I&apos;m a <span className="font-semibold text-gray-900">Computer Science student at Cornell</span>, passionate
           about building intelligent systems and scalable software. My work spans{" "}
           <span className="font-semibold text-[#654ea3]">AI/ML</span>,{" "}
-          <span className="font-semibold text-[#654ea3]">cloud infrastructure</span>, and{" "}
-          <span className="font-semibold text-[#654ea3]">full‑stack development</span>.
+          <span className="font-semibold text-[#654ea3]">low-level programming</span>, and{" "}
+          <span className="font-semibold text-[#654ea3]">full-stack development</span>.
         </p>
 
         <SocialLinks />
