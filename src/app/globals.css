@@ -1,1 +1,8 @@
 @import "tailwindcss";
+
+li.is-flashing .nav-indicator {
+  /* Animate to the same state as when hovered */
+  width: 2rem; /* 32px, matches 'group-hover:w-8' */
+  background-color: #334155; /* slate-700, matches 'group-hover:bg-slate-700' */
+  transition: all 300ms ease-out; /* A slightly longer, more noticeable transition */
+}

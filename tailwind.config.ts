@@ -10,6 +10,13 @@ const config: Config = {
   // This enables dark mode based on a class (e.g., <html class="dark">)
   darkMode: 'class',
   // Where you extend or override Tailwind's default design system
+  theme: {
+    extend: {
+      spacing: {
+        "sidebar": "288px",
+      }
+    },
+  },
   // Where you can add official or third-party plugins
   plugins: [],
 };
