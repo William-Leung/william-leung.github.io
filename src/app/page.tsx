@@ -3,9 +3,10 @@
 
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import Image from 'next/image'
 
 // --- Import Data and Components ---
-import { personalInfo, projects } from '../lib/data';
+import { personalInfo } from '../lib/data';
 import { GithubIcon, LinkedinIcon, MailIcon } from '../components/icons';
 
 // --- Main Page Component ---
@@ -25,10 +26,10 @@ const HomePage: NextPage = () => {
           <section className="flex flex-col md:flex-row items-start md:items-center justify-between gap-10 mb-20">
             <div className="md:w-2/3">
               <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
-                <span className="text-fuchsia-600">Hi, I'm {personalInfo.name.split(' ')[0]}</span>
+                <span className="text-fuchsia-600">Hi, I&apos;m {personalInfo.name.split(' ')[0]}</span>
               </h1>
               <p className="text-gray-600 text-lg leading-relaxed">
-                I'm a Computer Science student at Cornell, passionate about building intelligent systems and scalable software. My work spans across AI/ML, cloud infrastructure, and full-stack development. I enjoy tackling complex problems and turning ideas into reality through code.
+                I&apos;m a Computer Science student at Cornell, passionate about building intelligent systems and scalable software. My work spans across AI/ML, cloud infrastructure, and full-stack development. I enjoy tackling complex problems and turning ideas into reality through code.
               </p>
               <div className="mt-6 flex items-center gap-4">
                 <a href={personalInfo.github} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-900 transition-colors">
@@ -43,7 +44,7 @@ const HomePage: NextPage = () => {
               </div>
             </div>
             <div className="w-40 h-40 md:w-48 md:h-48 flex-shrink-0">
-              <img
+              <Image
                 src={personalInfo.profileImage}
                 alt={`A portrait of ${personalInfo.name}`}
                 className="rounded-full object-cover w-full h-full shadow-lg"
