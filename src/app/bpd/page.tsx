@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 
 const CRITERIA_LABELS = [
   "fear of abandonment",
@@ -15,15 +16,15 @@ const CRITERIA_LABELS = [
 ];
 
 const CRITERIA_PHRASES = [
-  "terrified of being left",
-  "loving and losing people in cycles she can't stop",
-  "unsure from day to day who she really is",
-  "acting before she thinks",
-  "hurting herself when the pain gets too loud",
-  "feeling everything too fast and too hard",
-  "carrying a hollowness nothing seems to fill",
-  "erupting into anger that surprises even her",
-  "drifting outside herself like a passenger in her own life",
+  "is terrified of being left",
+  "loves and loses people in cycles she can't stop",
+  "is unsure from day to day who she really is",
+  "acts before she thinks",
+  "hurts herself when the pain gets too loud",
+  "feels everything too fast and too hard",
+  "carries a hollowness nothing seems to fill",
+  "erupts into anger that surprises even her",
+  "drifts outside herself like a passenger in her own life",
 ];
 
 const NAMES = [
@@ -80,15 +81,8 @@ function buildVignette(combo: number[]): { name: string; sentence: string } {
   const phrases = shuffleWithSeed(combo.map(id => CRITERIA_PHRASES[id]), seed + 1);
 
   let sentence: string;
-  if (phrases.length === 5) {
-    sentence = `${name} lives with ${phrases[0]}, ${phrases[1]}, ${phrases[2]}, ${phrases[3]}, and ${phrases[4]}.`;
-  } else if (phrases.length === 6) {
-    sentence = `${name} knows ${phrases[0]} and ${phrases[1]}. She lives with ${phrases[2]}, ${phrases[3]}, ${phrases[4]}, and ${phrases[5]}.`;
-  } else if (phrases.length === 7) {
-    sentence = `${name} moves through the world ${phrases[0]}, ${phrases[1]}, and ${phrases[2]} — while also ${phrases[3]}, ${phrases[4]}, ${phrases[5]}, and ${phrases[6]}.`;
-  } else if (phrases.length === 8) {
-    sentence = `For ${name}: ${phrases[0]}, ${phrases[1]}, ${phrases[2]}, ${phrases[3]}, ${phrases[4]}, ${phrases[5]}, ${phrases[6]}, and ${phrases[7]}.`;
-  } else {
+  sentence = `${name} ${phrases[0]}, ${phrases[1]}, ${phrases[2]}, ${phrases[3]}, ${phrases[4]}, ${phrases[5]}, ${phrases[6]}, and ${phrases[7]}.`;
+  if (phrases.length === 9) {
     sentence = `${name} carries all nine.`;
   }
 
@@ -131,6 +125,24 @@ export default function BPDVisualizer() {
         <strong className="text-gray-700 dark:text-gray-300">They all get the same label</strong>.
       </p>
 
+      <Link
+        href="/bpd/motivation"
+        className="inline-flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors group"
+      >
+        Read the thinking behind this
+        <span className="group-hover:translate-x-0.5 transition-transform inline-block">→</span>
+      </Link>
+
+      {/* legend — moved above the grid */}
+      <div className="flex items-center gap-4 mt-5 mb-3 flex-wrap">
+        {[5, 6, 7, 8, 9].map(n => (
+          <div key={n} className="flex items-center gap-1.5">
+            <div className={`rounded-full border w-3 h-3 ${DOT_CLASSES[n]}`} />
+            <span className="text-xs text-gray-400 dark:text-gray-500">{n} criteria</span>
+          </div>
+        ))}
+      </div>
+
       {/* dot grid */}
       <div
         className="grid gap-1 mb-4"
@@ -151,20 +163,10 @@ export default function BPDVisualizer() {
         ))}
       </div>
 
-      {/* legend */}
-      <div className="flex items-center gap-4 mb-6 flex-wrap">
-        {[5, 6, 7, 8, 9].map(n => (
-          <div key={n} className="flex items-center gap-1.5">
-            <div className={`rounded-full border w-3 h-3 ${DOT_CLASSES[n]}`} />
-            <span className="text-xs text-gray-400 dark:text-gray-500">{n} criteria</span>
-          </div>
-        ))}
-      </div>
-
       {/* person portrait — below grid, expands freely */}
-      <div className="mb-6 p-4 rounded-lg border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/40">
+      <div className="mb-6 p-4 rounded-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-900 min-h-[72px]">
         {vignette === null ? (
-          <p className="text-sm text-gray-400 dark:text-gray-500 italic">Hover a dot to reveal a person…</p>
+          <p className="text-sm text-gray-400 dark:text-gray-500 italic mt-1">Hover a dot to reveal the person behind it</p>
         ) : (
           <div>
             <div className="flex items-center gap-3 mb-3">
@@ -202,8 +204,8 @@ export default function BPDVisualizer() {
       </div>
 
       {/* stamp */}
-      <div className="flex items-center gap-4 my-4 flex-wrap">
-        <span className="text-sm text-gray-400 dark:text-gray-500">All 256 →</span>
+      <div className="my-4">
+        <p className="text-sm text-gray-400 dark:text-gray-500 mb-2">All 256 combinations receive the same label ↓</p>
         <div className="border-2 border-[#A32D2D] dark:border-[#F09595] rounded-lg px-5 py-2 inline-block">
           <span className="text-lg font-medium text-[#A32D2D] dark:text-[#F09595] tracking-wide">
             Borderline Personality Disorder
@@ -215,10 +217,11 @@ export default function BPDVisualizer() {
       </div>
 
       {/* footer */}
-      <p className="text-xs text-gray-500 dark:text-gray-400 border-t border-gray-100 dark:border-gray-700 pt-4 mt-4 leading-relaxed italic">
+      <div className="border-t border-gray-100 dark:border-gray-700 pt-4 mt-4">
+        <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
         Women are diagnosed with BPD at 3 times the rate of men yet community studies find near equal prevalence. Clinicians assign this label to women presenting identical symptoms to men more readily and the label carries a stigma the symptoms alone would not. Behind every dot is a person. Behind every label is a story that cannot be encapsulated.
       </p>
-
+      </div>
     </div>
   );
 }
