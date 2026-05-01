@@ -15,15 +15,15 @@ const CRITERIA_LABELS = [
 ];
 
 const CRITERIA_PHRASES = [
-  "is terrified of being left",
-  "loves and loses people in cycles she can't stop",
-  "is unsure from day to day who she really is",
-  "acts before she thinks",
-  "hurts herself when the pain gets too loud",
-  "feels everything too fast and too hard",
-  "carries a hollowness nothing seems to fill",
-  "erupts into anger that surprises even her",
-  "drifts outside herself like a passenger in her own life",
+  "terrified of being left",
+  "loving and losing people in cycles she can't stop",
+  "unsure from day to day who she really is",
+  "acting before she thinks",
+  "hurting herself when the pain gets too loud",
+  "feeling everything too fast and too hard",
+  "carrying a hollowness nothing seems to fill",
+  "erupting into anger that surprises even her",
+  "drifting outside herself like a passenger in her own life",
 ];
 
 const NAMES = [
@@ -80,8 +80,14 @@ function buildVignette(combo: number[]): { name: string; sentence: string } {
   const phrases = shuffleWithSeed(combo.map(id => CRITERIA_PHRASES[id]), seed + 1);
 
   let sentence: string;
-  if (phrases.length < 9) {
-    sentence = `${phrases[0]}, ${phrases[1]}, ${phrases[2]}, ${phrases[3]}, ${phrases[4]}, ${phrases[5]}, ${phrases[6]}, and ${phrases[7]}.`;
+  if (phrases.length === 5) {
+    sentence = `${name} lives with ${phrases[0]}, ${phrases[1]}, ${phrases[2]}, ${phrases[3]}, and ${phrases[4]}.`;
+  } else if (phrases.length === 6) {
+    sentence = `${name} knows ${phrases[0]} and ${phrases[1]}. She lives with ${phrases[2]}, ${phrases[3]}, ${phrases[4]}, and ${phrases[5]}.`;
+  } else if (phrases.length === 7) {
+    sentence = `${name} moves through the world ${phrases[0]}, ${phrases[1]}, and ${phrases[2]} — while also ${phrases[3]}, ${phrases[4]}, ${phrases[5]}, and ${phrases[6]}.`;
+  } else if (phrases.length === 8) {
+    sentence = `For ${name}: ${phrases[0]}, ${phrases[1]}, ${phrases[2]}, ${phrases[3]}, ${phrases[4]}, ${phrases[5]}, ${phrases[6]}, and ${phrases[7]}.`;
   } else {
     sentence = `${name} carries all nine.`;
   }
@@ -103,9 +109,10 @@ const DOT_CLASSES: Record<number, string> = {
 
 export default function BPDVisualizer() {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+  const [displayIdx, setDisplayIdx] = useState<number | null>(null);
 
-  const hoveredCombo = hoveredIdx !== null ? ALL_COMBOS[hoveredIdx] : null;
-  const vignette = hoveredCombo ? buildVignette(hoveredCombo) : null;
+  const displayCombo = displayIdx !== null ? ALL_COMBOS[displayIdx] : null;
+  const vignette = displayCombo ? buildVignette(displayCombo) : null;
 
   return (
     <div className="p-8 max-w-2xl mx-auto">
@@ -124,20 +131,16 @@ export default function BPDVisualizer() {
         <strong className="text-gray-700 dark:text-gray-300">They all get the same label</strong>.
       </p>
 
-      <p className="text-xs text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-gray-800/50 border-l-2 border-purple-400 dark:border-purple-500 px-3 py-2 rounded-r mb-6">
-        Hover any dot to see who is behind the diagnosis.
-      </p>
-
       {/* dot grid */}
       <div
         className="grid gap-1 mb-4"
         style={{ gridTemplateColumns: 'repeat(32, 1fr)' }}
+        onMouseLeave={() => { setHoveredIdx(null); setDisplayIdx(null); }}
       >
         {ALL_COMBOS.map((combo, i) => (
           <div
             key={i}
-            onMouseEnter={() => setHoveredIdx(i)}
-            onMouseLeave={() => setHoveredIdx(null)}
+            onMouseEnter={() => { setHoveredIdx(i); setDisplayIdx(i); }}
             className={`rounded-full border cursor-pointer transition-transform ${
               i === hoveredIdx
                 ? 'bg-[#D85A30] border-[#993C1D] dark:bg-[#F0997B] dark:border-[#D85A30] scale-150'
@@ -179,7 +182,7 @@ export default function BPDVisualizer() {
             </div>
             <div className="flex flex-wrap gap-2">
               {CRITERIA_LABELS.map((label, id) => {
-                const has = hoveredCombo!.includes(id);
+                const has = displayCombo!.includes(id);
                 return (
                   <span
                     key={id}
@@ -213,9 +216,7 @@ export default function BPDVisualizer() {
 
       {/* footer */}
       <p className="text-xs text-gray-500 dark:text-gray-400 border-t border-gray-100 dark:border-gray-700 pt-4 mt-4 leading-relaxed italic">
-        Women are diagnosed with BPD at 3× the rate of men — yet studies show clinicians assign
-        this label to women presenting identical symptoms to men far more readily. Behind every
-        dot is a person. Behind every stamp is a story the label cannot hold.
+        Women are diagnosed with BPD at 3 times the rate of men yet community studies find near equal prevalence. Clinicians assign this label to women presenting identical symptoms to men more readily and the label carries a stigma the symptoms alone would not. Behind every dot is a person. Behind every label is a story that cannot be encapsulated.
       </p>
 
     </div>
