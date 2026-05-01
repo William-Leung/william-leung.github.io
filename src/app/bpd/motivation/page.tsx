@@ -30,18 +30,14 @@ export default function MotivationPage() {
           Why BPD
         </p>
         <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-4">
-          I chose the gendered diagnosis of BPD because it is one of the most stigmatized diagnoses
-          in the DSM and has a deep history of gender bias and trauma. Clinicians bear more negative
-          attitudes against individuals with BPD than other illnesses — and the diagnosis, and thus
-          the stigma, falls onto women three times more often than men.
+        BPD is one of the most stigmatized diagnoses in psychiatry and also one of the most gendered. 
+        The label falls on women three times more often than men, yet community studies find near-equal 
+        prevalence. The gap is not epidemiological. It is cultural.
         </p>
         <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
-          I was specifically drawn to this issue because the disparity is{' '}
-          <strong className="text-gray-700 dark:text-gray-300">inherently irrational</strong> — not
-          a reflection of true prevalence rates, but of the gender stereotypes that have largely
-          governed and pathologized women's lives. A woman expressing anger or emotional intensity
-          is more likely to be seen as disordered than a man exhibiting the exact same traits. This
-          injustice, despite the clear data, drove me to highlight the bias.
+        A woman expressing anger or emotional intensity is more likely to be seen as disordered than a 
+        man exhibiting the same traits. The diagnosis does not follow the symptoms. It follows the 
+        gender of the person expressing them.
         </p>
       </section>
 
