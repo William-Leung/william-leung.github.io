@@ -109,119 +109,125 @@ export default function BPDVisualizer() {
   const vignette = displayCombo ? buildVignette(displayCombo) : null;
 
   return (
-    <div className="p-8 max-w-2xl mx-auto">
+    <div className="min-h-screen bg-[#fafaf8] dark:bg-neutral-950">
+        <div className="p-8 max-w-2xl mx-auto">
 
-      {/* header */}
-      <p className="text-xs font-medium text-gray-400 dark:text-gray-500 tracking-widest uppercase mb-1">
-        Gender &amp; psychopathology
-      </p>
-      <h1 className="text-3xl font-medium text-gray-900 dark:text-gray-100 mb-2">Five of nine.</h1>
-      <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-6">
-        A diagnosis of Borderline Personality Disorder requires any 5 of 9 criteria.
-        That produces{' '}
-        <strong className="text-gray-700 dark:text-gray-300">256 different combinations</strong>{' '}
-        of symptoms: each a different person, a different life, a different pain.
-        <br /><br />
-        <strong className="text-gray-700 dark:text-gray-300">They all get the same label</strong>.
-      </p>
+        {/* header */}
+        <p className="text-xs font-medium text-gray-400 dark:text-gray-500 tracking-widest uppercase mb-1">
+            Gender &amp; psychopathology
+        </p>
+        <h1 className="text-3xl font-medium text-gray-900 dark:text-gray-100 mb-2">Five of nine.</h1>
+        <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-6">
+            A diagnosis of Borderline Personality Disorder requires any 5 of 9 criteria.
+            That produces{' '}
+            <strong className="text-gray-700 dark:text-gray-300">256 different combinations</strong>{' '}
+            of symptoms: each a different person, a different life, a different pain.
+            <br /><br />
+            <strong className="text-gray-700 dark:text-gray-300">They all get the same label</strong>.
+        </p>
 
-      <Link
-        href="/bpd/motivation"
-        className="inline-flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors group"
-      >
-        Read the thinking behind this
-        <span className="group-hover:translate-x-0.5 transition-transform inline-block">→</span>
-      </Link>
-
-      {/* legend — moved above the grid */}
-      <div className="flex items-center gap-4 mt-5 mb-3 flex-wrap">
-        {[5, 6, 7, 8, 9].map(n => (
-          <div key={n} className="flex items-center gap-1.5">
-            <div className={`rounded-full border w-3 h-3 ${DOT_CLASSES[n]}`} />
-            <span className="text-xs text-gray-400 dark:text-gray-500">{n} criteria</span>
-          </div>
-        ))}
-      </div>
-
-      {/* dot grid */}
-      <div
-        className="grid gap-1 mb-4"
-        style={{ gridTemplateColumns: 'repeat(32, 1fr)' }}
-        onMouseLeave={() => { setHoveredIdx(null); setDisplayIdx(null); }}
-      >
-        {ALL_COMBOS.map((combo, i) => (
-          <div
-            key={i}
-            onMouseEnter={() => { setHoveredIdx(i); setDisplayIdx(i); }}
-            className={`rounded-full border cursor-pointer transition-transform ${
-              i === hoveredIdx
-                ? 'bg-[#D85A30] border-[#993C1D] dark:bg-[#F0997B] dark:border-[#D85A30] scale-150'
-                : DOT_CLASSES[combo.length]
-            }`}
-            style={{ width: 12, height: 12 }}
-          />
-        ))}
-      </div>
-
-      {/* person portrait — below grid, expands freely */}
-      <div className="mb-6 p-4 rounded-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-900 min-h-[72px]">
-        {vignette === null ? (
-          <p className="text-sm text-gray-400 dark:text-gray-500 italic mt-1">Hover a dot to reveal the person behind it</p>
-        ) : (
-          <div>
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-9 h-9 rounded-full bg-[#EEEDFE] dark:bg-[#3C3489] border border-[#AFA9EC] dark:border-[#534AB7] flex items-center justify-center text-xs font-medium text-[#3C3489] dark:text-[#CECBF6] shrink-0">
-                {vignette.name.slice(0, 2).toUpperCase()}
-              </div>
-              <div>
-                <p className="text-sm font-medium text-gray-900 dark:text-gray-100 leading-none mb-1">
-                  {vignette.name}
-                </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400 italic leading-relaxed">
-                  {vignette.sentence.replace(vignette.name + ' ', '')}
-                </p>
-              </div>
+        {/* legend */}
+        <div className="flex items-center gap-4 mb-3 flex-wrap">
+            {[5, 6, 7, 8, 9].map(n => (
+            <div key={n} className="flex items-center gap-1.5">
+                <div className={`rounded-full border w-3 h-3 ${DOT_CLASSES[n]}`} />
+                <span className="text-xs text-gray-400 dark:text-gray-500">{n} criteria</span>
             </div>
-            <div className="flex flex-wrap gap-2">
-              {CRITERIA_LABELS.map((label, id) => {
-                const has = displayCombo!.includes(id);
-                return (
-                  <span
-                    key={id}
-                    className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
-                      has
-                        ? 'bg-[#EEEDFE] text-[#3C3489] border-[#AFA9EC] dark:bg-[#3C3489] dark:text-[#CECBF6] dark:border-[#534AB7]'
-                        : 'bg-white dark:bg-gray-900 text-gray-300 dark:text-gray-600 border-gray-100 dark:border-gray-700 line-through'
-                    }`}
-                  >
-                    {label}
-                  </span>
-                );
-              })}
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* stamp */}
-      <div className="my-4">
-        <p className="text-sm text-gray-400 dark:text-gray-500 mb-2">All 256 combinations receive the same label ↓</p>
-        <div className="border-2 border-[#A32D2D] dark:border-[#F09595] rounded-lg px-5 py-2 inline-block">
-          <span className="text-lg font-medium text-[#A32D2D] dark:text-[#F09595] tracking-wide">
-            Borderline Personality Disorder
-          </span>
-          <span className="block text-center text-xs text-[#A32D2D] dark:text-[#F09595] tracking-widest mt-0.5 opacity-80">
-            DSM-5 · 301.83
-          </span>
+            ))}
         </div>
-      </div>
 
-      {/* footer */}
-      <div className="border-t border-gray-100 dark:border-gray-700 pt-4 mt-4">
-        <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
-        Women are diagnosed with BPD at 3 times the rate of men yet community studies find near equal prevalence. Clinicians assign this label to women presenting identical symptoms to men more readily and the label carries a stigma the symptoms alone would not. Behind every dot is a person. Behind every label is a story that cannot be encapsulated.
-      </p>
-      </div>
+        {/* dot grid */}
+        <div
+            className="grid gap-1 mb-4"
+            style={{ gridTemplateColumns: 'repeat(32, 1fr)' }}
+            onMouseLeave={() => { setHoveredIdx(null); setDisplayIdx(null); }}
+        >
+            {ALL_COMBOS.map((combo, i) => (
+            <div
+                key={i}
+                onMouseEnter={() => { setHoveredIdx(i); setDisplayIdx(i); }}
+                className={`rounded-full border cursor-pointer transition-transform ${
+                i === hoveredIdx
+                    ? 'bg-[#D85A30] border-[#993C1D] dark:bg-[#F0997B] dark:border-[#D85A30] scale-150'
+                    : DOT_CLASSES[combo.length]
+                }`}
+                style={{ width: 12, height: 12 }}
+            />
+            ))}
+        </div>
+
+        {/* person portrait */}
+        <div className="mb-6 p-4 rounded-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-900 min-h-12">
+            {vignette === null ? (
+            <p className="text-sm text-gray-400 dark:text-gray-500 italic mt-1">
+                Hover a dot to reveal the person behind it
+            </p>
+            ) : (
+            <div>
+                <div className="flex items-center gap-3 mb-3">
+                <div className="w-9 h-9 rounded-full bg-[#EEEDFE] dark:bg-[#3C3489] border border-[#AFA9EC] dark:border-[#534AB7] flex items-center justify-center text-xs font-medium text-[#3C3489] dark:text-[#CECBF6] shrink-0">
+                    {vignette.name.slice(0, 2).toUpperCase()}
+                </div>
+                <div>
+                    <p className="text-sm font-medium text-gray-900 dark:text-gray-100 leading-none mb-1">
+                    {vignette.name}
+                    </p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 italic leading-relaxed">
+                    {vignette.sentence.replace(vignette.name + ' ', '')}
+                    </p>
+                </div>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                {CRITERIA_LABELS.map((label, id) => {
+                    const has = displayCombo!.includes(id);
+                    return (
+                    <span
+                        key={id}
+                        className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
+                        has
+                            ? 'bg-[#EEEDFE] text-[#3C3489] border-[#AFA9EC] dark:bg-[#3C3489] dark:text-[#CECBF6] dark:border-[#534AB7]'
+                            : 'bg-white dark:bg-gray-900 text-gray-300 dark:text-gray-600 border-gray-100 dark:border-gray-700 line-through'
+                        }`}
+                    >
+                        {label}
+                    </span>
+                    );
+                })}
+                </div>
+            </div>
+            )}
+        </div>
+
+        {/* stamp — label text → arrow → red box, all inline */}
+        <div className="flex items-center gap-3 my-4">
+            <span className="text-sm text-gray-400 dark:text-gray-500 whitespace-nowrap">
+            All 256 combinations receive the same label
+            </span>
+            <span className="text-gray-300 dark:text-gray-600 text-lg leading-none">→</span>
+            <div className="border-2 border-[#A32D2D] dark:border-[#F09595] rounded-lg px-5 py-2 inline-block shrink-0">
+            <span className="text-lg font-medium text-[#A32D2D] dark:text-[#F09595] tracking-wide">
+                Borderline Personality Disorder
+            </span>
+            <span className="block text-center text-xs text-[#A32D2D] dark:text-[#F09595] tracking-widest mt-0.5 opacity-80">
+                DSM-5 · 301.83
+            </span>
+            </div>
+        </div>
+
+        {/* footer */}
+        <div className="border-t border-gray-100 dark:border-gray-700 pt-4 mt-4">
+            <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-4">
+            Women are diagnosed with BPD at 3 times the rate of men yet community studies find near equal prevalence. Clinicians assign this label to women presenting identical symptoms to men more readily and the label carries a stigma the symptoms alone would not. Behind every dot is a person. Behind every label is a story that cannot be encapsulated.
+            </p>
+            <Link
+            href="/bpd/motivation"
+            className="inline-flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors group"
+            >
+            Read about why I made this
+            <span className="group-hover:translate-x-0.5 transition-transform inline-block">→</span>
+            </Link>
+        </div>
+        </div>
     </div>
   );
 }
