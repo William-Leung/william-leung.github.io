@@ -24,55 +24,46 @@ function getCombos(n: number, k: number): number[][] {
   return result;
 }
 
-const ALL_COMBOS: number[][] = [5, 6, 7, 8, 9].flatMap(k => getCombos(9, k)); // 256 people
+const ALL_COMBOS: number[][] = [5, 6, 7, 8, 9].flatMap(k => getCombos(9, k));
+
+const DOT_CLASSES: Record<number, string> = {
+  5: 'bg-[#EEEDFE] border-[#CECBF6] dark:bg-[#26215C] dark:border-[#3C3489]',
+  6: 'bg-[#CECBF6] border-[#AFA9EC] dark:bg-[#3C3489] dark:border-[#534AB7]',
+  7: 'bg-[#AFA9EC] border-[#7F77DD] dark:bg-[#534AB7] dark:border-[#7F77DD]',
+  8: 'bg-[#7F77DD] border-[#534AB7] dark:bg-[#7F77DD] dark:border-[#AFA9EC]',
+  9: 'bg-[#534AB7] border-[#3C3489] dark:bg-[#AFA9EC] dark:border-[#CECBF6]',
+};
 
 export default function BPDVisualizer() {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
 
   const hoveredCombo = hoveredIdx !== null ? ALL_COMBOS[hoveredIdx] : null;
 
-  // intensity: more criteria = slightly more saturated dot
-  const getDotColor = (comboIdx: number) => {
-    const len = ALL_COMBOS[comboIdx].length;
-    const isHovered = comboIdx === hoveredIdx;
-    if (isHovered) return 'bg-orange-500 border-orange-700 scale-150';
-    // shade by how many criteria (5=lightest, 9=darkest)
-    const shades: Record<number, string> = {
-      5: 'bg-purple-100 border-purple-200',
-      6: 'bg-purple-200 border-purple-300',
-      7: 'bg-purple-300 border-purple-400',
-      8: 'bg-purple-400 border-purple-500',
-      9: 'bg-purple-600 border-purple-700',
-    };
-    return shades[len] ?? 'bg-purple-200 border-purple-300';
-  };
-
   return (
     <div className="p-8 max-w-2xl mx-auto">
 
       {/* header */}
-      <p className="text-xs font-medium text-gray-400 tracking-widest uppercase mb-1">
+      <p className="text-xs font-medium text-gray-400 dark:text-gray-500 tracking-widest uppercase mb-1">
         Gender &amp; psychopathology
       </p>
-      <h1 className="text-3xl font-medium text-gray-900 mb-1">Five of nine.</h1>
-      <p className="text-sm text-gray-500 leading-relaxed mb-6">
+      <h1 className="text-3xl font-medium text-gray-900 dark:text-gray-100 mb-2">Five of nine.</h1>
+      <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-6">
         A diagnosis of Borderline Personality Disorder requires any 5 of 9 criteria.
-        That produces <strong>256 different combinations</strong> of symptoms —
-        each a different person, a different life, a different kind of pain.
-        <br />They all get the same label.
+        That produces <strong className="text-gray-700 dark:text-gray-300">256 different combinations</strong> of symptoms: each a different person, a different life, a different pain.
+        <br /><br /><strong className="text-gray-700 dark:text-gray-300">They all get the same label</strong>.
       </p>
 
-      <p className="text-xs text-gray-400 bg-gray-50 border-l-2 border-purple-400 px-3 py-2 rounded-r mb-6">
+      <p className="text-xs text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-gray-800/50 border-l-2 border-purple-400 dark:border-purple-500 px-3 py-2 rounded-r mb-6">
         Hover any dot to see who is behind the diagnosis.
       </p>
 
       {/* person portrait */}
-        <div className="h-28 mb-6 p-4 rounded-lg border border-gray-100 bg-gray-50 overflow-hidden">
+      <div className="h-28 mb-6 p-4 rounded-lg border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/40 overflow-hidden">
         {hoveredCombo === null ? (
-          <p className="text-sm text-gray-400 italic">Hover a dot to reveal a person...</p>
+          <p className="text-sm text-gray-400 dark:text-gray-500 italic">Hover a dot to reveal a person...</p>
         ) : (
           <div>
-            <p className="text-xs text-gray-400 mb-2">
+            <p className="text-xs text-gray-400 dark:text-gray-500 mb-2">
               Person #{hoveredIdx! + 1} &nbsp;·&nbsp; {hoveredCombo.length} of 9 criteria
             </p>
             <div className="flex flex-wrap gap-2">
@@ -81,10 +72,10 @@ export default function BPDVisualizer() {
                 return (
                   <span
                     key={c.id}
-                    className={`text-xs px-3 py-1.5 rounded-full border ${
+                    className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
                       has
-                        ? 'bg-purple-50 text-purple-800 border-purple-300'
-                        : 'bg-white text-gray-300 border-gray-100 line-through'
+                        ? 'bg-[#EEEDFE] text-[#3C3489] border-[#AFA9EC] dark:bg-[#3C3489] dark:text-[#CECBF6] dark:border-[#534AB7]'
+                        : 'bg-white dark:bg-gray-900 text-gray-300 dark:text-gray-600 border-gray-100 dark:border-gray-700 line-through'
                     }`}
                   >
                     {c.short}
@@ -101,12 +92,16 @@ export default function BPDVisualizer() {
         className="grid gap-1 mb-6"
         style={{ gridTemplateColumns: 'repeat(32, 1fr)' }}
       >
-        {ALL_COMBOS.map((_, i) => (
+        {ALL_COMBOS.map((combo, i) => (
           <div
             key={i}
             onMouseEnter={() => setHoveredIdx(i)}
             onMouseLeave={() => setHoveredIdx(null)}
-            className={`rounded-full border cursor-pointer transition-transform ${getDotColor(i)}`}
+            className={`rounded-full border cursor-pointer transition-transform ${
+              i === hoveredIdx
+                ? 'bg-[#D85A30] border-[#993C1D] dark:bg-[#F0997B] dark:border-[#D85A30] scale-150'
+                : DOT_CLASSES[combo.length]
+            }`}
             style={{ width: 12, height: 12 }}
           />
         ))}
@@ -114,34 +109,30 @@ export default function BPDVisualizer() {
 
       {/* legend */}
       <div className="flex items-center gap-4 mb-6 flex-wrap">
-        {[5,6,7,8,9].map(n => (
+        {[5, 6, 7, 8, 9].map(n => (
           <div key={n} className="flex items-center gap-1.5">
-            <div className={`rounded-full border w-3 h-3 ${
-              {5:'bg-purple-100 border-purple-200', 6:'bg-purple-200 border-purple-300',
-               7:'bg-purple-300 border-purple-400', 8:'bg-purple-400 border-purple-500',
-               9:'bg-purple-600 border-purple-700'}[n]
-            }`}/>
-            <span className="text-xs text-gray-400">{n} criteria</span>
+            <div className={`rounded-full border w-3 h-3 ${DOT_CLASSES[n]}`} />
+            <span className="text-xs text-gray-400 dark:text-gray-500">{n} criteria</span>
           </div>
         ))}
       </div>
 
       {/* stamp */}
-      <div className="flex items-center gap-4 my-4">
-        <span className="text-sm text-gray-400">All 256 →</span>
-        <div className="border-2 border-red-700 rounded-lg px-5 py-2 inline-block">
-          <span className="text-lg font-medium text-red-700 tracking-wide">
+      <div className="flex items-center gap-4 my-4 flex-wrap">
+        <span className="text-sm text-gray-400 dark:text-gray-500">All 256 →</span>
+        <div className="border-2 border-[#A32D2D] dark:border-[#F09595] rounded-lg px-5 py-2 inline-block">
+          <span className="text-lg font-medium text-[#A32D2D] dark:text-[#F09595] tracking-wide">
             Borderline Personality Disorder
           </span>
-          <span className="block text-center text-xs text-red-600 tracking-widest mt-0.5">
+          <span className="block text-center text-xs text-[#A32D2D] dark:text-[#F09595] tracking-widest mt-0.5 opacity-80">
             DSM-5 · 301.83
           </span>
         </div>
       </div>
 
       {/* footer */}
-      <p className="text-xs text-gray-500 border-t border-gray-100 pt-4 mt-4 leading-relaxed italic">
-        Women are diagnosed with BPD at 3× the rate of men — yet studies show clinicians assign
+      <p className="text-xs text-gray-500 dark:text-gray-400 border-t border-gray-100 dark:border-gray-700 pt-4 mt-4 leading-relaxed italic">
+        Women are diagnosed with BPD at 3x the rate of men — yet studies show clinicians assign
         this label to women presenting identical symptoms to men far more readily. Behind every
         dot is a person. Behind every stamp is a story the label cannot hold.
       </p>
